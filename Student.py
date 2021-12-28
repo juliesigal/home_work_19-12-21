@@ -1,5 +1,7 @@
-from sqlalchemy import Column, Integer, String, text, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, BigInteger,Integer, String, DateTime, REAL, Date, ForeignKey, UniqueConstraint
 from db_config import Base
+from sqlalchemy.orm import relationship, backref
+from Kita import Kita
 
 class Students(Base):
     __tablename__ = 'student'
@@ -10,7 +12,9 @@ class Students(Base):
     grade_avg = Column(Integer(), nullable=False)
     kita_id = Column(Integer(), ForeignKey('kita.id'), nullable=False)
 
-    __table_args__ = (UniqueConstraint('fname', 'lname'))
+    kitot = relationship('Kita', backref=backref('student', uselist=True))
+
+    __table_args__ = (UniqueConstraint('fname', 'lname', name='una_1'),)
 
     def __repr__(self):
         return f'\n<Student id={self.id} first name={self.fname} last name={self.lname}, grade avg={self.grade_avg},kita id={self.kita_id} >'
