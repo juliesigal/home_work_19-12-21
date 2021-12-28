@@ -1,0 +1,29 @@
+targil 1:
+
+def invokeme1(l1, _func):
+    for i in range(len(l1)):
+        l1[i] = _func(l1[i])
+
+        
+l1 = [1,2,3,4,5,6,7,8]
+t1 = ("apple", "banana", "cherry")
+invokeme1(l1, lambda x: x*10)
+#invokeme(t1, lambda x: x + "yes") # will not work on tuples - immutable 
+print(l1)
+
+targil 2:
+
+def invokeme2(l1, _func1, _func2):
+    for i in range(len(l1)):
+        if (i % 2) == 0:
+            l1[i] = _func1(l1[i])
+        else:
+            l1[i] = _func2(l1[i])
+        
+            
+l1 = [1,2,3,4,5,6,7,8]
+invokeme2(l1, lambda x: x*10, lambda x: x*100)
+print(l1)
+
+targil 3: 
+
