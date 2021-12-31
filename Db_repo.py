@@ -54,6 +54,8 @@ class DbRepo:
 
     def get_by_column_value(self, table_class, column_name, value):
         return self.local_session.query(table_class).filter(column_name == value).all()
+        self.local_session.commit()
 
     def get_by_ilike(self, table_class, column_name, exp):
         return self.local_session.query(table_class).filter(column_name.ilike(exp)).all()
+        self.local_session.commit()
